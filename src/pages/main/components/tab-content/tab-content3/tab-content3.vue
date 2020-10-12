@@ -1,22 +1,29 @@
 <template>
-  <view class="tab-content3">3</view>
+    <view class="tab-content3">
+        <user/>
+    </view>
 </template>
 
 <script type="text/ecmascript-6">
 
-  export default {
-    name: "tab-content3",
-    data() {
-      return {}
-    },
-    props: {},
-    methods: {},
-    created() {
+    import User from "./user/user";
+
+    export default {
+        components: {User},
+        name: "tab-content3",
+        data() {
+            return {
+                url: $config.DEFAULT_USER,
+            }
+        },
+        props: {},
+        methods: {},
+        created() {
+        }
     }
-  }
 </script>
 
 <style lang="less">
-  @import "../../../../../assets/less/common";
+    @import "../../../../../assets/less/common";
 
 </style>

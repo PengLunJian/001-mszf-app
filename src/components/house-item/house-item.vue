@@ -3,7 +3,7 @@
     <view class="item-row row">
       <view class="item-col col-4">
         <view class="item-img">
-          <lazy-image src="" width="60%"/>
+          <lazy-image src=""/>
         </view>
       </view>
       <view class="item-col col-8">
