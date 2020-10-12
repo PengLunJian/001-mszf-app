@@ -12,9 +12,7 @@
         components: {User},
         name: "tab-content3",
         data() {
-            return {
-                url: $config.DEFAULT_USER,
-            }
+            return {}
         },
         props: {},
         methods: {},
