@@ -1,7 +1,13 @@
 <template>
   <view class="nav-bar">
-    <view class="status-bar"></view>
-    <view class="title-bar">码上找房</view>
+    <view class="nav-bar-sb"></view>
+    <view class="nav-bar-tb">
+      <view class="nav-btns">
+        <view class="nav-btn iconfont icon-back"></view>
+        <view class="nav-btn iconfont icon-home"></view>
+      </view>
+      <view class="nav-title">码上找房</view>
+    </view>
   </view>
 </template>
 
@@ -27,18 +33,30 @@
     top: 0;
     left: 0;
     width: 100%;
-    .status-bar {
+    background-color: @white;
+    .nav-bar-sb {
       width: 100%;
       height: var(--status-bar-height);
-      background-color: @white;
     }
-    .title-bar {
+    .nav-bar-tb {
+      position: relative;
       height: unit(90, rpx);
       line-height: unit(90, rpx);
-      background-color: @white;
-      font-size: @fontSize32;
-      font-weight: bold;
       text-align: center;
+      .nav-btns {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        .nav-btn {
+          width: unit(90, rpx);
+          font-size: @fontSize40;
+        }
+      }
+      .nav-title {
+        font-size: @fontSize32;
+        font-weight: bold;
+      }
     }
   }
 </style>

@@ -8,13 +8,14 @@
         <view class="context fade-in">
           <scroll-view class="scroll-view" :scroll-y="isScroll">
             <view class="scroll-content">
-              <tab-bar :tabIndex="tabIndex" @onChange="onHandleChange"/>
               <tab-content :tabIndex="tabIndex"/>
             </view>
           </scroll-view>
         </view>
       </view>
-      <view class="footer"></view>
+      <view class="footer">
+        <tab-bar :tabIndex="tabIndex" @onChange="onHandleChange"/>
+      </view>
     </view>
   </view>
 </template>
@@ -61,10 +62,11 @@
         .context {
           height: 100%;
           padding-top: calc(var(--status-bar-height) + unit(90, rpx));
+          padding-bottom: unit(110, rpx);
           .scroll-view {
             height: 100%;
             .scroll-content {
-
+              padding-bottom: unit(20, rpx);
             }
           }
         }

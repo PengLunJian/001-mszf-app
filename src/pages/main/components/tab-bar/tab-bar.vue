@@ -41,9 +41,9 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 100%;
-    height: auto;
     z-index: 1000;
+    width: 100%;
+    height: unit(110,rpx);
     box-shadow: 0 0 15px @boxShadow05;
     background-color: @white;
     font-size: @fontSize24;
@@ -51,7 +51,7 @@
     color: @fontColor3;
     .tab-row {
       .tab-col {
-        padding: unit(10, rpx) 0;
+        padding: unit(10, upx) 0;
         .tab-icon {
           height: unit(60, rpx);
           line-height: unit(60, rpx);

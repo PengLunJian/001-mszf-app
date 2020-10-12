@@ -1,10 +1,10 @@
 <template>
   <view class="lazy-image">
     <view class="lazy-image-loading" v-if="isLoading">
-      <image class="image" :style="styl" :src="url" mode="aspectFit"/>
+      <image class="image" :style="{'width':width}" :src="url" mode="aspectFit"/>
     </view>
     <view class="lazy-image-success" :class="{'fade-in':isSuccess}">
-      <image class="image" :src="src" :mode="mode" @load="onHandleLoader"/>
+      <image class="image" :src="src" :mode="mode" @load="onHandleLoad"/>
     </view>
   </view>
 </template>
@@ -32,10 +32,13 @@
         type: String,
         default: 'scaleToFill'
       },
-      styl: {}
+      width: {
+        type: String,
+        default: ''
+      }
     },
     methods: {
-      onHandleLoader() {
+      onHandleLoad() {
         this.isSuccess = true;
         setTimeout(() => {
           this.isLoading = false;

@@ -1,5 +1,6 @@
 const apis = {
-  baseUrl: 'https://api.zhifuxia.net.cn',
+  baseUrl: 'https://mszfzjd.cn/house/api',
+  fileUrl: 'https://mszfzjd.cn',
   method: 'post',
   timeout: 20000,
   dataType: 'json',
