@@ -28,6 +28,11 @@ export const SETTING = {
     path: '/pages/setting/index'
 };
 
+export const ABOUT = {
+    name: '关于我们',
+    path: '/pages/about/index'
+};
+
 export const WAITING = {
     name: '敬请期待',
     path: '/pages/waiting/index'

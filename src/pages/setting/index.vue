@@ -13,7 +13,7 @@
                                     <view class="module-header"></view>
                                     <view class="module-body">
                                         <view class="module-items">
-                                            <view class="module-item btn">
+                                            <view class="module-item btn" @click="onHandleRoute">
                                                 <view class="module-row row">
                                                     <view class="module-col col-4">
                                                         <text class="module-text">关于我们</text>
@@ -23,7 +23,7 @@
                                                     </view>
                                                 </view>
                                             </view>
-                                            <view class="module-item btn">
+                                            <view class="module-item btn" @click="onHandleStorage">
                                                 <view class="module-row row">
                                                     <view class="module-col col-4">
                                                         <text class="module-text">清理缓存</text>
@@ -33,7 +33,7 @@
                                                     </view>
                                                 </view>
                                             </view>
-                                            <view class="module-item btn">
+                                            <view class="module-item btn" @click="onHandleVersion">
                                                 <view class="module-row row">
                                                     <view class="module-col col-4">
                                                         <text class="module-text">系统更新</text>
@@ -63,6 +63,7 @@
 <script type="text/ecmascript-6">
     import mixins from '../../mixins';
     import NavBar from "../../components/nav-bar/nav-bar";
+    import * as $routes from '../../routes';
 
     export default {
         components: {
@@ -75,6 +76,13 @@
             }
         },
         methods: {
+            onHandleRoute() {
+                this.navigateTo($routes.ABOUT.path);
+            },
+            onHandleStorage() {
+            },
+            onHandleVersion() {
+            },
             onHandleExit() {
             }
         },
