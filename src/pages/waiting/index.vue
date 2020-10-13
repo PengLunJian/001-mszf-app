@@ -2,47 +2,40 @@
     <view class="container">
         <view class="content">
             <view class="header">
-                <nav-bar/>
+                <nav-bar title="敬请期待"/>
             </view>
             <view class="body">
                 <view class="context fade-in">
                     <scroll-view class="scroll-view" :scroll-y="isScroll">
                         <view class="scroll-content">
-                            <tab-content :tabIndex="tabIndex"/>
+                            <waiting/>
                         </view>
                     </scroll-view>
                 </view>
             </view>
-            <view class="footer">
-                <tab-bar :tabIndex="tabIndex" @onChange="onHandleChange"/>
-            </view>
+            <view class="footer"></view>
         </view>
     </view>
 </template>
 
 <script type="text/ecmascript-6">
-    import mixins from '../../mixins';
-    import TabBar from "./components/tab-bar/tab-bar";
+
     import NavBar from "../../components/nav-bar/nav-bar";
-    import TabContent from "./components/tab-content/tab-content";
-    import * as $controller from './controller';
+    import Waiting from "../../components/waiting/waiting";
 
     export default {
         components: {
-            NavBar,
-            TabContent,
-            TabBar
+            Waiting,
+            NavBar
         },
         data() {
             return {
-                tabIndex: 0,
                 isScroll: true
             }
         },
-        mixins: [mixins],
-        computed: $controller.states,
-        methods: $controller.actions,
+        methods: {},
         onLoad() {
+
         }
     }
 </script>
@@ -51,7 +44,7 @@
     @import "../../assets/less/common";
 
     .container {
-        min-height: 100vh;
+        min-height: 100%;
         .content {
             height: 100vh;
             .header {
@@ -61,12 +54,10 @@
                 position: relative;
                 .context {
                     height: 100%;
-                    .mixinTop(unit(90, rpx));
-                    padding-bottom: unit(110, rpx);
                     .scroll-view {
                         height: 100%;
                         .scroll-content {
-                            padding-bottom: unit(20, rpx);
+                            height: 100%;
                         }
                     }
                 }

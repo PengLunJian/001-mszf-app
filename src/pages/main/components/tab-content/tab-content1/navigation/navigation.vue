@@ -32,27 +32,27 @@
           {
             text: '租房',
             icon: 'icon-nav01',
-            path: $routes.WAIT.path
+            path: $routes.WAITING.path
           },
           {
             text: '二手房',
             icon: 'icon-nav02',
-            path: $routes.WAIT.path
+            path: $routes.WAITING.path
           },
           {
             text: '新房',
             icon: 'icon-nav03',
-            path: $routes.WAIT.path
+            path: $routes.WAITING.path
           },
           {
             text: '房贷计算',
             icon: 'icon-nav04',
-            path: $routes.WAIT.path
+            path: $routes.WAITING.path
           },
           {
             text: '房源发布',
             icon: 'icon-nav05',
-            path: $routes.WAIT.path
+            path: $routes.WAITING.path
           }
         ]
       }

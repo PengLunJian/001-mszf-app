@@ -7,6 +7,7 @@
 @fontColor2: #666666;
 @fontColor3: #999999;
 @fontColor4: #CCCCCC;
+@fontColor5: #DEDEDE;
 @priceColor: #F40505;
 @borderColor1: #DEDEDE;
 @borderColor2: #F0F0F0;
@@ -66,3 +67,7 @@
 
 @boxShadow05: rgba(0, 0, 0, .05);
 @boxShadow15: rgba(0, 0, 0, .15);
+
+.mixinTop(@val) {
+    padding-top: calc(var(--status-bar-height) + @val);
+}

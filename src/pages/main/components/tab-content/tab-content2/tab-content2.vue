@@ -1,22 +1,27 @@
 <template>
-  <view class="tab-content2">2</view>
+    <view class="tab-content2">
+        <waiting/>
+    </view>
 </template>
 
 <script type="text/ecmascript-6">
 
-  export default {
-    name: "tab-content2",
-    data() {
-      return {}
-    },
-    props: {},
-    methods: {},
-    created() {
+    import Waiting from "../../../../../components/waiting/waiting";
+
+    export default {
+        components: {Waiting},
+        name: "tab-content2",
+        data() {
+            return {}
+        },
+        props: {},
+        methods: {},
+        created() {
+        }
     }
-  }
 </script>
 
 <style lang="less">
-  @import "../../../../../assets/less/common";
+    @import "../../../../../assets/less/common";
 
 </style>
