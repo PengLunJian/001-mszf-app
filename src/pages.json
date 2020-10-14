@@ -19,6 +19,24 @@
             }
         },
         {
+            "path": "pages/address/index",
+            "style": {
+                "app-plus": {
+                    "bounce": "none",
+                    "titleNView": false
+                }
+            }
+        },
+        {
+            "path": "pages/search/index",
+            "style": {
+                "app-plus": {
+                    "bounce": "none",
+                    "titleNView": false
+                }
+            }
+        },
+        {
             "path": "pages/favorite/index",
             "style": {
                 "app-plus": {

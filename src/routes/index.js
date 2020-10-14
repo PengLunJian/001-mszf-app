@@ -3,6 +3,16 @@ export const MAIN = {
     path: '/pages/main/index'
 };
 
+export const ADDRESS = {
+    name: '选择城市',
+    path: '/pages/address/index'
+};
+
+export const SEARCH = {
+    name: '房源搜索',
+    path: '/pages/search/index'
+};
+
 export const FAVORITE = {
     name: '我的收藏',
     path: '/pages/favorite/index'

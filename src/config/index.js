@@ -10,3 +10,4 @@ export const BANNER = [
 ];
 
 export const DEFAULT_USER = apis.fileUrl + '/image/1a9ae696-53df-4950-8021-890b03a8f0fe.png';
+export const DEFAULT_ABOUT = apis.fileUrl + '/image/415dbe7a-82fe-4ee8-a505-b701814af516.jpg';

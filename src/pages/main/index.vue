@@ -2,7 +2,7 @@
     <view class="container">
         <view class="content">
             <view class="header">
-                <nav-bar/>
+                <top-bar :tabIndex="tabIndex"/>
             </view>
             <view class="body">
                 <view class="context fade-in">
@@ -23,13 +23,13 @@
 <script type="text/ecmascript-6">
     import mixins from '../../mixins';
     import TabBar from "./components/tab-bar/tab-bar";
-    import NavBar from "../../components/nav-bar/nav-bar";
+    import TopBar from "./components/top-bar/top-bar";
     import TabContent from "./components/tab-content/tab-content";
     import * as $controller from './controller';
 
     export default {
         components: {
-            NavBar,
+            TopBar,
             TabContent,
             TabBar
         },

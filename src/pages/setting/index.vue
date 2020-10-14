@@ -39,7 +39,7 @@
                                                         <text class="module-text">系统更新</text>
                                                     </view>
                                                     <view class="module-col col-8">
-                                                        <text class="module-text">version1.0.0</text>
+                                                        <text class="module-text">Version1.0.0</text>
                                                         <text class="module-next iconfont icon-next"></text>
                                                     </view>
                                                 </view>
