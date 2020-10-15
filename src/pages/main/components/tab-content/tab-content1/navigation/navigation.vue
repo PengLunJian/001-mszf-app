@@ -32,7 +32,7 @@
           {
             text: '租房',
             icon: 'icon-nav01',
-            path: $routes.WAITING.path
+            path: $routes.HOUSE.rent.path
           },
           {
             text: '二手房',

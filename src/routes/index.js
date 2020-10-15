@@ -38,6 +38,13 @@ export const SETTING = {
     path: '/pages/setting/index'
 };
 
+export const HOUSE = {
+    rent: {
+        name: '租房列表',
+        path: '/pages/house/rent/index'
+    }
+};
+
 export const ABOUT = {
     name: '关于我们',
     path: '/pages/about/index'

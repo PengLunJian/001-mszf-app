@@ -54,6 +54,7 @@
         overflow: hidden;
         position: relative;
         padding: 0 unit(30, rpx);
+        background-color: @white;
         .item-row {
             padding: unit(30, rpx) 0;
             border-bottom: 0.5px solid @borderColor2;
