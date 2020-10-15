@@ -3,31 +3,25 @@
         <view class="content">
             <view class="header">
                 <nav-bar title="房源列表"/>
-                <tab-bar/>
+                <tab-bar :tabIndex="tabIndex" @onChange="onHandleChange"/>
             </view>
             <view class="body">
                 <view class="context fade-in">
                     <scroll-view class="scroll-view" :scroll-y="isScroll">
                         <view class="scroll-content">
                             <view class="items">
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
-                                <house-item :item="item"/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
+                                <house-item/>
                             </view>
                             <loading-more length="10" totalCount="100"/>
                         </view>
@@ -56,10 +50,15 @@
         mixins: [mixins],
         data() {
             return {
-                isScroll: true
+                isScroll: true,
+                tabIndex: -1
             }
         },
-        methods: {},
+        methods: {
+            onHandleChange(index) {
+                console.log(index);
+            }
+        },
         onLoad() {
         }
     }
@@ -79,7 +78,7 @@
                 position: relative;
                 .context {
                     height: 100%;
-                    .mixinTop(unit(90, rpx));
+                    padding-top: calc(@statusBarHeight + unit(170, rpx));
                     .scroll-view {
                         height: 100%;
                         .scroll-content {

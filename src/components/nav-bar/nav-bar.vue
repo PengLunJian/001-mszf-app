@@ -52,7 +52,7 @@
         background-color: @white;
         .nav-bar-sb {
             width: 100%;
-            height: var(--status-bar-height);
+            height: @statusBarHeight;
         }
         .nav-bar-tb {
             position: relative;

@@ -61,7 +61,7 @@
                 position: relative;
                 .context {
                     height: 100%;
-                    .mixinTop(unit(90, rpx));
+                    padding-top: calc(@statusBarHeight + unit(90, rpx));
                     padding-bottom: unit(110, rpx);
                     .scroll-view {
                         height: 100%;
