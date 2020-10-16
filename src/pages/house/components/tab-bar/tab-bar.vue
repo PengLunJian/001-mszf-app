@@ -2,11 +2,11 @@
     <view class="tab-bar">
         <view class="tab-row row">
             <view class="tab-col col-4"
-                  :class="{'active':activeIndex===index}"
+                  :class="{'active':tabIndex===index}"
                   v-for="(item,index) in items"
                   @click="onHandleChange(index)">
                 <view class="tab-item">
-                    <view class="tab-text">{{item.label}}</view>
+                    <view class="tab-text">{{item}}</view>
                 </view>
             </view>
         </view>
@@ -18,33 +18,19 @@
         name: "tab-bar",
         data() {
             return {
-                activeIndex: -1,
                 items: [
-                    {
-                        label: '区域',
-                        isShow: false
-                    },
-                    {
-                        label: '筛选',
-                        isShow: false
-                    },
-                    {
-                        label: '排序',
-                        isShow: false
-                    }
+                    '区域', '筛选', '排序'
                 ]
             }
         },
         props: {
             tabIndex: {
                 type: Number,
-                default: 0
+                default: -1
             }
         },
         methods: {
             onHandleChange(index) {
-                const {activeIndex} = this;
-                this.activeIndex = activeIndex !== index ? index : -1;
                 this.$emit('onChange', index);
             }
         },
@@ -58,9 +44,9 @@
 
     .tab-bar {
         position: fixed;
-        top: calc(@statusBarHeight + unit(90, rpx));
+        top: @top1;
         left: 0;
-        z-index: 999;
+        z-index: 1009;
         width: 100%;
         height: unit(80, rpx);
         box-shadow: 0 0 15px @boxShadow05;

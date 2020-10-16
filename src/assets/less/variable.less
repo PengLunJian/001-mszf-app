@@ -68,4 +68,9 @@
 @boxShadow05: rgba(0, 0, 0, .05);
 @boxShadow15: rgba(0, 0, 0, .15);
 
+@navBarHeight: unit(90, rpx);
+@tabBarHeight: unit(80, rpx);
 @statusBarHeight: var(--status-bar-height);
+
+@top1: calc(@statusBarHeight + @navBarHeight);
+@top2: calc(@statusBarHeight + @navBarHeight + @tabBarHeight);
