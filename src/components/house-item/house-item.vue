@@ -1,14 +1,14 @@
 <template>
-    <view class="item">
-        <view class="item-row row">
+    <view class="item" @click="onHandleRoute">
+        <view class="item-row row" v-if="item.type===1">
             <view class="item-col col-4">
                 <view class="item-img">
-                    <lazy-image src=""/>
+                    <lazy-image :src="getPicUrl"/>
                 </view>
             </view>
             <view class="item-col col-8">
                 <view class="item-info">
-                    <view class="item-title ellipsis">卡地亚 三室两厅一厨一卫 8楼 108平精装 报115万</view>
+                    <view class="item-title ellipsis">{{item.title}}</view>
                     <view class="item-small ellipsis">2室1厅1卫 / 108m² / 朝南 / 卡地亚花园</view>
                     <view class="item-tags">
                         <view class="item-tag">南北通透</view>
@@ -25,12 +25,63 @@
                 </view>
             </view>
         </view>
+        <view class="item-row row" v-if="item.type===2">
+            <view class="item-col col-4">
+                <view class="item-img">
+                    <lazy-image :src="getPicUrl"/>
+                </view>
+            </view>
+            <view class="item-col col-8">
+                <view class="item-info">
+                    <view class="item-title ellipsis">{{item.title}}</view>
+                    <view class="item-small ellipsis">2室1厅1卫 / 108m² / 朝南 / 卡地亚花园</view>
+                    <view class="item-tags">
+                        <view class="item-tag">南北通透</view>
+                        <view class="item-tag">南北通透</view>
+                        <view class="item-tag">南北通透</view>
+                        <view class="item-tag">南北通透</view>
+                    </view>
+                    <view class="item-price">
+                        <text class="item-total">115
+                            <text class="unit">万元</text>
+                        </text>
+                        <text class="item-unit">10648.1元/m²</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="item-row row" v-if="item.type===3">
+            <view class="item-col col-4">
+                <view class="item-img">
+                    <lazy-image :src="getPicUrl" mode="aspectFill"/>
+                </view>
+            </view>
+            <view class="item-col col-8">
+                <view class="item-info">
+                    <view class="item-title ellipsis">{{item.title}}</view>
+                    <view class="item-small ellipsis">{{item.apart}} / {{item.floorArea}}m² / {{item.leaseWay}} /
+                        {{item.houseName}}
+                    </view>
+                    <view class="item-tags">
+                        <view class="item-tag" v-for="(item,index) in getTags" :key="index">{{item}}</view>
+                    </view>
+                    <view class="item-price">
+                        <text class="item-total">
+                            {{item.price}}
+                            <text class="unit">元/月</text>
+                        </text>
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
 </template>
 
 <script type="text/ecmascript-6">
-
     import LazyImage from "../lazy-image/lazy-image";
+    import apis from '../../apis';
+    import * as $config from '../../config';
+    import * as $routes from '../../routes';
 
     export default {
         components: {
@@ -40,8 +91,27 @@
         data() {
             return {}
         },
-        props: {},
-        methods: {},
+        props: {
+            item: {
+                type: Object,
+                default: null
+            }
+        },
+        computed: {
+            getPicUrl() {
+                const {picUrl} = this.item;
+                const url = picUrl.length ? apis.fileUrl + picUrl[0] : $config.DEFAULT_HOUSE;
+                return url;
+            },
+            getTags() {
+                const {tags} = this.item;
+                return tags.split(' ');
+            }
+        },
+        methods: {
+            onHandleRoute() {
+            }
+        },
         created() {
         }
     }

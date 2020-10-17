@@ -1,147 +1,73 @@
 const apis = {
-  baseUrl: 'https://mszfzjd.cn/house/api',
-  fileUrl: 'https://mszfzjd.cn',
-  method: 'post',
-  timeout: 20000,
-  dataType: 'json',
-  header: {
-    'Content-Type': 'application/json; charset=UTF-8'
-  },
-  updateVersion: {
-    url: '/account/appupdate',
-    params: {
-      appid: '',
-      version: ''
+    baseUrl: 'https://mszfzjd.cn/house/api',
+    fileUrl: 'https://mszfzjd.cn',
+    method: 'POST',
+    timeout: 5000,
+    dataType: 'json',
+    header: {
+        'Content-Type': 'application/json; charset=UTF-8'
+    },
+    selectLogin: {
+        url: '/user/getOpenId',
+        params: {
+            code: ''
+        }
+    },
+    selectPhone: {
+        url: '/user/gePhone',
+        params: {
+            id: '',
+            iv: '',
+            sessionKey: '',
+            encryptedData: ''
+        }
+    },
+    selectHotHouse: {
+        url: '/index/select',
+        params: {
+            pageSize: 5,
+            pageIndex: 1
+        }
+    },
+    selectHouse: {
+        url: '/house/select',
+        params: {
+            pageIndex: 1,
+            pageSize: 10
+        }
+    },
+    selectDetail: {
+        url: '/house/detail/select',
+        params: {
+            id: 1,
+            phone: ''
+        }
+    },
+    updateFollow: {
+        url: '/conllect/insert',
+        params: {
+            houseId: '',
+            phone: '',
+            isFollow: 1
+        }
+    },
+    selectFollow: {
+        url: '/collect/select',
+        params: {
+            pageSize: 10,
+            pageIndex: 1,
+            phone: '',
+            type: ''
+        }
+    },
+    selectHistory: {
+        url: '/history/select',
+        params: {
+            pageSize: 10,
+            pageIndex: 1,
+            phone: ''
+        }
     }
-  },
-  selectToken: {
-    url: '/account/apprefreshtoken',
-    params: {
-      token: ''
-    }
-  },
-  selectLogin: {
-    url: '/account/applogin',
-    params: {
-      username: '',
-      password: '',
-      deviceId: ''
-    }
-  },
-  selectIndex: {
-    url: '/api/index',
-    params: {}
-  },
-  selectOrder: {
-    url: '/order/orderlist',
-    params: {
-      shopid: 0,
-      siteuserid: 0,
-      paystate: 0,
-      paytype: 0,
-      begindate: '',
-      enddate: '',
-      sorttype: 0,
-      sort: 0
-    }
-  },
-  selectDetail: {
-    url: '/order/orderdetail',
-    params: {
-      orderid: ''
-    }
-  },
-  updatePassword: {
-    url: '/account/appchangepassword',
-    params: {
-      oldpassword: '',
-      newpassword: ''
-    }
-  },
-  selectUser: {
-    url: '/account/appmyinfo',
-    params: {}
-  },
-  insertSuggest: {
-    url: '/pay/addfeedback',
-    params: {
-      title: '',
-      content: '',
-      name: '',
-      phone: ''
-    }
-  },
-  insertLoan: {
-    url: '/pay/addloanapply',
-    params: {
-      name: '',
-      idcard: '',
-      mobile: '',
-      businesshours: '',
-      monthturnover: '',
-      businessaddress: ''
-    }
-  },
-  updateRefund: {
-    url: '/pay/apprefund',
-    params: {
-      orderid: '',
-      refundpass: '',
-      refundreason: '',
-      sign: ''
-    }
-  },
-  insertPayment: {
-    url: '/pay/appacquire',
-    params: {
-      scanpayno: '',
-      paymoney: 0,
-      sellerdiscountamount: 0,
-      sellercouponamount: 0,
-      ordertitle: '',
-      ordernote: '',
-      sign: ''
-    }
-  },
-  selectShops: {
-    url: '/pay/currentsiteshop',
-    params: {}
-  },
-  selectClerk: {
-    url: '/pay/currentsiteuser',
-    params: {
-      shopid: 0
-    }
-  },
-  selectChart: {
-    url: '/report/indexfivepayamount',
-    params: {}
-  },
-  selectRecom: {
-    url: '/report/indexfiveorder',
-    params: {}
-  },
-  selectTotal: {
-    url: '/report/incomecntcustomer',
-    params: {
-      begindate: '',
-      enddate: ''
-    }
-  },
-  selectRecon: {
-    url: '/report/orderreport',
-    params: {
-      begindate: '',
-      enddate: ''
-    }
-  },
-  selectBill: {
-    url: '/report/orderreport',
-    params: {
-      begindate: '',
-      enddate: ''
-    }
-  }
-}
+};
 
 export default apis;

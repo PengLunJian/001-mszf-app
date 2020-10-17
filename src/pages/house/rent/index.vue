@@ -6,24 +6,18 @@
                 <tab-bar :tabIndex="tabIndex" @onChange="onHandleChange"/>
             </view>
             <view class="body">
-                <view class="context fade-in">
-                    <scroll-view class="scroll-view" :scroll-y="isScroll">
+                <loading :isShow="isLoading&&!isHouse.rows.length"/>
+                <error :isShow="isFailure&&!isHouse.rows.length" @refresh="onRefresh"/>
+                <empty :isShow="isSuccess&&!isHouse.rows.length"/>
+                <view class="context fade-in" v-if="isHouse.rows.length">
+                    <scroll-view class="scroll-view"
+                                 :scroll-y="isScroll"
+                                 @scrolltolower="onHandleScrollToLower">
                         <view class="scroll-content">
                             <view class="items">
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
-                                <house-item/>
+                                <house-item v-for="(item,index) in isHouse.rows" :item="item" :key="index"/>
                             </view>
-                            <loading-more :length="10" :totalCount="100"/>
+                            <loading-more :length="isHouse.rows.length" :totalCount="isHouse.totalCount"/>
                         </view>
                     </scroll-view>
                 </view>
@@ -62,10 +56,10 @@
                     <view class="modal-footer">
                         <view class="modal-row row">
                             <view class="modal-col col-4">
-                                <view class="btn btn-reset">重置</view>
+                                <view class="btn btn-reset" @click="onHandleReset">重置</view>
                             </view>
                             <view class="modal-col col-8">
-                                <view class="btn btn-confirm">确定</view>
+                                <view class="btn btn-confirm" @click="onHandleConfirm">确定</view>
                             </view>
                         </view>
                     </view>
@@ -83,7 +77,7 @@
                                     <view class="modal-items row">
                                         <view class="modal-item col-3" v-for="(item,index) in btnItems1.items"
                                               :key="index">
-                                            <view class="btn btn-item" :class="{'active':btnItems1.activeIndex===index}"
+                                            <view class="btn-item" :class="{'active':btnItems1.activeIndex===index}"
                                                   @click="onHandleBtnItems(btnItems1,index)">{{item.label}}
                                             </view>
                                         </view>
@@ -97,7 +91,7 @@
                                     <view class="modal-items row">
                                         <view class="modal-item col-3" v-for="(item,index) in btnItems2.items"
                                               :key="index">
-                                            <view class="btn btn-item" :class="{'active':btnItems2.activeIndex===index}"
+                                            <view class="btn-item" :class="{'active':btnItems2.activeIndex===index}"
                                                   @click="onHandleBtnItems(btnItems2,index)">{{item.label}}
                                             </view>
                                         </view>
@@ -111,7 +105,7 @@
                                     <view class="modal-items row">
                                         <view class="modal-item col-3" v-for="(item,index) in btnItems3.items"
                                               :key="index">
-                                            <view class="btn btn-item" :class="{'active':btnItems3.activeIndex===index}"
+                                            <view class="btn-item" :class="{'active':btnItems3.activeIndex===index}"
                                                   @click="onHandleBtnItems(btnItems3,index)">{{item.label}}
                                             </view>
                                         </view>
@@ -125,7 +119,7 @@
                                     <view class="modal-items row">
                                         <view class="modal-item col-3" v-for="(item,index) in btnItems4.items"
                                               :key="index">
-                                            <view class="btn btn-item" :class="{'active':btnItems4.activeIndex===index}"
+                                            <view class="btn-item" :class="{'active':btnItems4.activeIndex===index}"
                                                   @click="onHandleBtnItems(btnItems4,index)">{{item.label}}
                                             </view>
                                         </view>
@@ -139,7 +133,7 @@
                                     <view class="modal-items row">
                                         <view class="modal-item col-3" v-for="(item,index) in btnItems5.items"
                                               :key="index">
-                                            <view class="btn btn-item" :class="{'active':btnItems5.activeIndex===index}"
+                                            <view class="btn-item" :class="{'active':btnItems5.activeIndex===index}"
                                                   @click="onHandleBtnItems(btnItems5,index)">{{item.label}}
                                             </view>
                                         </view>
@@ -153,7 +147,7 @@
                                     <view class="modal-items row">
                                         <view class="modal-item col-3" v-for="(item,index) in btnItems6.items"
                                               :key="index">
-                                            <view class="btn btn-item" :class="{'active':btnItems6.activeIndex===index}"
+                                            <view class="btn-item" :class="{'active':btnItems6.activeIndex===index}"
                                                   @click="onHandleBtnItems(btnItems6,index)">{{item.label}}
                                             </view>
                                         </view>
@@ -167,7 +161,7 @@
                                     <view class="modal-items row">
                                         <view class="modal-item col-3" v-for="(item,index) in btnItems7.items"
                                               :key="index">
-                                            <view class="btn btn-item" :class="{'active':btnItems7.activeIndex===index}"
+                                            <view class="btn-item" :class="{'active':btnItems7.activeIndex===index}"
                                                   @click="onHandleBtnItems(btnItems7,index)">{{item.label}}
                                             </view>
                                         </view>
@@ -180,10 +174,10 @@
                     <view class="modal-footer">
                         <view class="modal-row row">
                             <view class="modal-col col-4">
-                                <view class="btn btn-reset">重置</view>
+                                <view class="btn btn-reset" @click="onHandleReset">重置</view>
                             </view>
                             <view class="modal-col col-8">
-                                <view class="btn btn-confirm">确定</view>
+                                <view class="btn btn-confirm" @click="onHandleConfirm">确定</view>
                             </view>
                         </view>
                     </view>
@@ -216,8 +210,16 @@
     import LoadingMore from "../../../components/loading-more/loading-more";
     import TabBar from "../components/tab-bar/tab-bar";
 
+    import * as $controller from './controller';
+    import Loading from "../../../components/loading/loading";
+    import Error from "../../../components/error/error";
+    import Empty from "../../../components/empty/empty";
+
     export default {
         components: {
+            Empty,
+            Error,
+            Loading,
             TabBar,
             LoadingMore,
             HouseItem,
@@ -228,6 +230,9 @@
             return {
                 isScroll: true,
                 tabIndex: -1,
+                pageIndex: 1,
+                pageSize: 10,
+                type: 3,
                 btnItems1: {
                     type: '方式',
                     activeIndex: -1,
@@ -568,48 +573,11 @@
                 },
             }
         },
-        methods: {
-            onHandleClose() {
-                this.tabIndex = -1;
-                this.isScroll = true;
-            },
-            onHandleChange(index) {
-                const {tabIndex} = this;
-                this.isScroll = tabIndex === index ? true : false;
-                this.tabIndex = tabIndex === index ? -1 : index;
-            },
-            onHandleBtnItems(item, index) {
-                const {type, activeIndex} = item;
-                console.log(type);
-                switch (type) {
-                    case '方式':
-                        this.btnItems1.activeIndex = activeIndex === index ? -1 : index;
-                        break;
-                    case '户型':
-                        this.btnItems2.activeIndex = activeIndex === index ? -1 : index;
-                        break;
-                    case '装修':
-                        this.btnItems3.activeIndex = activeIndex === index ? -1 : index;
-                        break;
-                    case '朝向':
-                        this.btnItems4.activeIndex = activeIndex === index ? -1 : index;
-                        break;
-                    case '楼层':
-                        this.btnItems5.activeIndex = activeIndex === index ? -1 : index;
-                        break;
-                    case '价格':
-                        this.btnItems6.activeIndex = activeIndex === index ? -1 : index;
-                        break;
-                    case '面积':
-                        this.btnItems7.activeIndex = activeIndex === index ? -1 : index;
-                        break;
-                    case '排序':
-                        this.btnItems8.activeIndex = activeIndex === index ? -1 : index;
-                        break;
-                }
-            }
-        },
+        computed: $controller.states,
+        methods: $controller.actions,
         onLoad() {
+            this.selectHouseReplace();
+            this.exeAjaxSelectHouse();
         }
     }
 </script>
