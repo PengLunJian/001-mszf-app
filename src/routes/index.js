@@ -45,6 +45,11 @@ export const HOUSE = {
     }
 };
 
+export const DETAIL = {
+    name: '房源详情',
+    path: '/pages/detail/index'
+};
+
 export const ABOUT = {
     name: '关于我们',
     path: '/pages/about/index'

@@ -152,6 +152,19 @@
                                             </view>
                                         </view>
                                     </view>
+                                    <view class="modal-slider">
+                                        <view class="modal-row row">
+                                            <view class="modal-col col-6">
+                                                <view class="modal-label min-label">价格</view>
+                                            </view>
+                                            <view class="modal-col col-6">
+                                                <view class="modal-label max-label">不限</view>
+                                            </view>
+                                            <view class="modal-col col-12">
+                                                <range-slider width="690" bar-height="8" @rangeChange="onHandleRangeChange"/>
+                                            </view>
+                                        </view>
+                                    </view>
                                     <view class="modal-split"></view>
                                 </view>
                             </view>
@@ -163,6 +176,19 @@
                                               :key="index">
                                             <view class="btn-item" :class="{'active':btnItems7.activeIndex===index}"
                                                   @click="onHandleBtnItems(btnItems7,index)">{{item.label}}
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="modal-slider">
+                                        <view class="modal-row row">
+                                            <view class="modal-col col-6">
+                                                <view class="modal-label min-label">面积</view>
+                                            </view>
+                                            <view class="modal-col col-6">
+                                                <view class="modal-label max-label">不限</view>
+                                            </view>
+                                            <view class="modal-col col-12">
+                                                <range-slider width="690" bar-height="8" @rangeChange="onHandleRangeChange"/>
                                             </view>
                                         </view>
                                     </view>
@@ -209,11 +235,11 @@
     import HouseItem from "../../../components/house-item/house-item";
     import LoadingMore from "../../../components/loading-more/loading-more";
     import TabBar from "../components/tab-bar/tab-bar";
-
-    import * as $controller from './controller';
     import Loading from "../../../components/loading/loading";
+    import RangeSlider from "../../../components/range-slider/range-slider";
     import Error from "../../../components/error/error";
     import Empty from "../../../components/empty/empty";
+    import * as $controller from './controller';
 
     export default {
         components: {
@@ -223,7 +249,8 @@
             TabBar,
             LoadingMore,
             HouseItem,
-            NavBar
+            NavBar,
+            RangeSlider
         },
         mixins: [mixins],
         data() {
@@ -724,6 +751,18 @@
                                         content: '';
                                         display: block;
                                         border-bottom: 0.5px solid @borderColor1;
+                                    }
+                                }
+                                .modal-slider {
+                                    .modal-row {
+                                        .modal-col {
+                                            .modal-label {
+                                                padding: unit(15, rpx) 0;
+                                                &.max-label{
+                                                    text-align: right;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }

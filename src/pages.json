@@ -19,6 +19,15 @@
             }
         },
         {
+            "path": "pages/detail/index",
+            "style": {
+                "app-plus": {
+                    "bounce": "none",
+                    "titleNView": false
+                }
+            }
+        },
+        {
             "path": "pages/about/index",
             "style": {
                 "app-plus": {

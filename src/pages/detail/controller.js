@@ -1,5 +1,4 @@
 import {mapActions, mapState} from 'vuex';
-import * as $ajax from '../../../ajax';
 
 export const states = {
     ...mapState({
@@ -12,8 +11,7 @@ export const states = {
 
 export const actions = {
     ...mapActions([
-        'ajaxSelectHouse',
-        'selectHouseReplace'
+        'ajaxSelectHouse'
     ]),
     onHandleClose() {
         this.tabIndex = -1;
@@ -75,54 +73,7 @@ export const actions = {
             case 0:
                 break;
             case 1:
-                this.pageIndex = 1;
-                this.onHandleClose();
-                this.selectHouseReplace();
-                this.exeAjaxSelectHouse();
                 break;
-        }
-    },
-    onHandleRangeChange() {
-    },
-    onHandleScrollToLower() {
-        $ajax.abort();
-        const {rows, totalCount, pageIndex} = this.isHouse;
-        if (rows.length < totalCount) {
-            this.pageIndex = pageIndex + 1;
-            this.exeAjaxSelectHouse();
-        }
-    },
-    exeAjaxSelectHouse() {
-        const params = this.getParams();
-        this.ajaxSelectHouse(params)
-            .then((res) => {
-                res = res || {};
-                const {success} = res;
-                if (!success) {
-                    const {rows} = this.isHouse;
-                    if (rows.length) {
-                        this.showToast('加载失败，请重试');
-                    }
-                }
-                console.log(res);
-            })
-            .catch((err) => {
-                const {rows} = this.isHouse;
-                if (rows.length) {
-                    this.showToast('网络异常，请重试');
-                }
-                console.log(err);
-            })
-    },
-    onRefresh() {
-        this.exeAjaxSelectHouse();
-    },
-    getParams() {
-        const {pageIndex, pageSize, type} = this;
-        return {
-            pageIndex,
-            pageSize,
-            type
         }
     }
 };

@@ -80,6 +80,7 @@
 <script type="text/ecmascript-6">
     import LazyImage from "../lazy-image/lazy-image";
     import apis from '../../apis';
+    import mixins from '../../mixins';
     import * as $config from '../../config';
     import * as $routes from '../../routes';
 
@@ -88,6 +89,7 @@
             LazyImage
         },
         name: "house-item",
+        mixins: [mixins],
         data() {
             return {}
         },
@@ -110,6 +112,7 @@
         },
         methods: {
             onHandleRoute() {
+                this.navigateTo($routes.DETAIL.path);
             }
         },
         created() {
