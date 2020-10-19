@@ -5,6 +5,38 @@ import * as utils from '../utils';
  * @param state
  * @constructor
  */
+export const SELECT_INDEX_REQUEST = (state) => {
+    state.INDEX.isLoading = true;
+    state.INDEX.isSuccess = false;
+    state.INDEX.isFailure = false;
+};
+/**
+ *
+ * @param state
+ * @param data
+ * @constructor
+ */
+export const SELECT_INDEX_SUCCESS = (state, data) => {
+    state.INDEX.isLoading = false;
+    state.INDEX.isSuccess = true;
+    state.INDEX.isFailure = false;
+    state.INDEX.isData = data;
+};
+/**
+ *
+ * @param state
+ * @constructor
+ */
+export const SELECT_INDEX_FAILURE = (state) => {
+    state.INDEX.isLoading = false;
+    state.INDEX.isSuccess = false;
+    state.INDEX.isFailure = true;
+};
+/**
+ *
+ * @param state
+ * @constructor
+ */
 export const SELECT_HOUSE_REQUEST = (state) => {
     state.HOUSE.isLoading = true;
     state.HOUSE.isSuccess = false;

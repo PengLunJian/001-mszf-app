@@ -5,12 +5,9 @@
                 <view class="module-title">{{title}}</view>
             </view>
             <view class="module-body">
-                <view class="module-house">
-                    <house-item/>
-                    <house-item/>
-                    <house-item/>
-                    <house-item/>
-                    <house-item/>
+                <view class="module-items">
+                    <house-item v-for="(item,index) in items" :item="item" :key="index"/>
+                    <empty :isShow="!items.length"/>
                 </view>
             </view>
             <view class="module-footer"></view>
@@ -20,9 +17,11 @@
 
 <script type="text/ecmascript-6">
     import HouseItem from "../../../../../../components/house-item/house-item";
+    import Empty from "../../../../../../components/empty/empty";
 
     export default {
         components: {
+            Empty,
             HouseItem
         },
         name: "house",
@@ -33,6 +32,10 @@
             title: {
                 type: String,
                 default: ''
+            },
+            items: {
+                type: Array,
+                default: []
             }
         },
         methods: {},
@@ -49,7 +52,6 @@
             .module-header {
                 padding: unit(30, rpx) unit(30, rpx) 0;
                 .module-title {
-                    height: unit(32, rpx);
                     line-height: unit(32, rpx);
                     padding-left: unit(20, rpx);
                     border-left: 4px solid @theme;
@@ -60,15 +62,8 @@
                 }
             }
             .module-body {
-                .module-swiper {
-                    height: unit(280, rpx);
-                    .swiper {
-                        height: 100%;
-                        .swiper-item {
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
+                .module-items {
+                    min-height: unit(500, rpx);
                 }
             }
             .module-footer {

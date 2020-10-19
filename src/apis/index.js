@@ -22,7 +22,7 @@ const apis = {
             encryptedData: ''
         }
     },
-    selectHotHouse: {
+    selectIndex: {
         url: '/index/select',
         params: {
             pageSize: 5,

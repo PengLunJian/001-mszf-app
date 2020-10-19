@@ -161,7 +161,7 @@
                                                 <view class="modal-label max-label">不限</view>
                                             </view>
                                             <view class="modal-col col-12">
-                                                <range-slider width="690" bar-height="8" @rangeChange="onHandleRangeChange"/>
+                                                <range-slider :width="690" :bar-height="8" @rangeChange="onHandleRangeChange"/>
                                             </view>
                                         </view>
                                     </view>
@@ -188,7 +188,7 @@
                                                 <view class="modal-label max-label">不限</view>
                                             </view>
                                             <view class="modal-col col-12">
-                                                <range-slider width="690" bar-height="8" @rangeChange="onHandleRangeChange"/>
+                                                <range-slider :width="690" :bar-height="8" @rangeChange="onHandleRangeChange"/>
                                             </view>
                                         </view>
                                     </view>

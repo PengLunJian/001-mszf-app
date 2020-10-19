@@ -11,7 +11,6 @@ export const states = {
 
 export const actions = {
   onHandleChange(index) {
-    console.log(index);
     this.tabIndex = index;
   }
 };

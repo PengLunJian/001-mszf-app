@@ -3,7 +3,7 @@
         <view class="item-row row" v-if="item.type===1">
             <view class="item-col col-4">
                 <view class="item-img">
-                    <lazy-image :src="getPicUrl"/>
+                    <lazy-image :src="getPicUrl" mode="aspectFill"/>
                 </view>
             </view>
             <view class="item-col col-8">
@@ -28,24 +28,21 @@
         <view class="item-row row" v-if="item.type===2">
             <view class="item-col col-4">
                 <view class="item-img">
-                    <lazy-image :src="getPicUrl"/>
+                    <lazy-image :src="getPicUrl" mode="aspectFill"/>
                 </view>
             </view>
             <view class="item-col col-8">
                 <view class="item-info">
                     <view class="item-title ellipsis">{{item.title}}</view>
-                    <view class="item-small ellipsis">2室1厅1卫 / 108m² / 朝南 / 卡地亚花园</view>
+                    <view class="item-small ellipsis">{{item.apart}} / {{item.floorArea}}m² / {{item.leaseWay}} / {{item.houseName}}</view>
                     <view class="item-tags">
-                        <view class="item-tag">南北通透</view>
-                        <view class="item-tag">南北通透</view>
-                        <view class="item-tag">南北通透</view>
-                        <view class="item-tag">南北通透</view>
+                        <view class="item-tag" v-for="(item,index) in getTags" :key="index">{{item}}</view>
                     </view>
                     <view class="item-price">
-                        <text class="item-total">115
+                        <text class="item-total">{{item.totalPrice}}
                             <text class="unit">万元</text>
                         </text>
-                        <text class="item-unit">10648.1元/m²</text>
+                        <text class="item-unit">{{getUnitPrice}}元/m²</text>
                     </view>
                 </view>
             </view>
@@ -108,6 +105,10 @@
             getTags() {
                 const {tags} = this.item;
                 return tags.split(' ');
+            },
+            getUnitPrice() {
+                const {totalPrice, floorArea} = this.item;
+                return (totalPrice * 10000 / floorArea).toFixed(2);
             }
         },
         methods: {
