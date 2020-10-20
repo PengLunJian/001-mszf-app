@@ -13,7 +13,7 @@
         name: "loading",
         data() {
             return {
-                isLoading: true
+                isLoading: false
             }
         },
         props: {
@@ -35,6 +35,10 @@
             }
         },
         created() {
+            const {isShow} = this;
+            if (isShow) {
+                this.isLoading = isShow;
+            }
         }
     }
 </script>

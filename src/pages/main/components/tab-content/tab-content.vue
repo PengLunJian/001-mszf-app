@@ -1,8 +1,8 @@
 <template>
     <view class="tab-content">
-        <tab-content1 v-if="tabIndex===0"/>
-        <tab-content2 v-if="tabIndex===1"/>
-        <tab-content3 v-if="tabIndex===2"/>
+        <tab-content1 v-show="tabIndex===0"/>
+        <tab-content2 v-show="tabIndex===1"/>
+        <tab-content3 v-show="tabIndex===2"/>
     </view>
 </template>
 
