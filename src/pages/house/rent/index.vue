@@ -24,7 +24,7 @@
             </view>
             <view class="footer"></view>
             <view class="modal modal1" :class="{'show':tabIndex===0}">
-                <view class="modal-mask" @click="onHandleClose"></view>
+                <view class="modal-mask" @click="onHandleModalClose"></view>
                 <view class="modal-content">
                     <view class="modal-header"></view>
                     <view class="modal-body">
@@ -66,7 +66,7 @@
                 </view>
             </view>
             <view class="modal modal2" :class="{'show':tabIndex===1}">
-                <view class="modal-mask" @click="onHandleClose"></view>
+                <view class="modal-mask" @click="onHandleModalClose"></view>
                 <view class="modal-content">
                     <view class="modal-header"></view>
                     <view class="modal-body">
@@ -210,7 +210,7 @@
                 </view>
             </view>
             <view class="modal modal3" :class="{'show':tabIndex===2}">
-                <view class="modal-mask" @click="onHandleClose"></view>
+                <view class="modal-mask" @click="onHandleModalClose"></view>
                 <view class="modal-content">
                     <view class="modal-header"></view>
                     <view class="modal-body">
@@ -277,7 +277,7 @@
                             value: '转租'
                         }
                     ],
-                    value: ''
+                    value: null
                 },
                 btnItems2: {
                     type: '户型',
@@ -308,7 +308,7 @@
                             value: '5室+'
                         }
                     ],
-                    value: ''
+                    value: null
                 },
                 btnItems3: {
                     type: '装修',
@@ -335,7 +335,7 @@
                             value: '其他'
                         }
                     ],
-                    value: ''
+                    value: null
                 },
                 btnItems4: {
                     type: '朝向',
@@ -362,7 +362,7 @@
                             value: '南北'
                         }
                     ],
-                    value: ''
+                    value: null
                 },
                 btnItems5: {
                     type: '楼层',
@@ -389,7 +389,7 @@
                             value: '顶层'
                         }
                     ],
-                    value: ''
+                    value: null
                 },
                 btnItems6: {
                     type: '价格',
@@ -473,7 +473,7 @@
                             }
                         }
                     ],
-                    value: []
+                    value: null
                 },
                 btnItems7: {
                     type: '面积',
@@ -550,7 +550,7 @@
                             }
                         }
                     ],
-                    value: []
+                    value: null
                 },
                 btnItems8: {
                     type: '排序',

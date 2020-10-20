@@ -15,7 +15,7 @@ export const actions = {
         'ajaxSelectHouse',
         'selectHouseReplace'
     ]),
-    onHandleClose() {
+    onHandleModalClose() {
         this.tabIndex = -1;
         this.isScroll = true;
     },
@@ -25,31 +25,40 @@ export const actions = {
         this.tabIndex = tabIndex === index ? -1 : index;
     },
     onHandleBtnItems(item, index) {
-        const {type, activeIndex} = item;
+        const {type, items, activeIndex} = item;
         switch (type) {
             case '方式':
                 this.btnItems1.activeIndex = activeIndex === index ? -1 : index;
+                this.btnItems1.value = activeIndex === index ? null : items[index]['value'];
                 break;
             case '户型':
                 this.btnItems2.activeIndex = activeIndex === index ? -1 : index;
+                this.btnItems2.value = activeIndex === index ? null : items[index]['value'];
                 break;
             case '装修':
                 this.btnItems3.activeIndex = activeIndex === index ? -1 : index;
+                this.btnItems3.value = activeIndex === index ? null : items[index]['value'];
                 break;
             case '朝向':
                 this.btnItems4.activeIndex = activeIndex === index ? -1 : index;
+                this.btnItems4.value = activeIndex === index ? null : items[index]['value'];
                 break;
             case '楼层':
                 this.btnItems5.activeIndex = activeIndex === index ? -1 : index;
+                this.btnItems5.value = activeIndex === index ? null : items[index]['value'];
                 break;
             case '价格':
                 this.btnItems6.activeIndex = activeIndex === index ? -1 : index;
+                this.btnItems6.value = activeIndex === index ? null : [items[index]['value']];
                 break;
             case '面积':
                 this.btnItems7.activeIndex = activeIndex === index ? -1 : index;
+                this.btnItems7.value = activeIndex === index ? null : [items[index]['value']];
                 break;
             case '排序':
                 this.btnItems8.activeIndex = activeIndex === index ? -1 : index;
+                this.btnItems8.value = activeIndex === index ? null : items[index]['value'];
+                this.onHandleAjaxRequest();
                 break;
         }
     },
@@ -75,12 +84,15 @@ export const actions = {
             case 0:
                 break;
             case 1:
-                this.pageIndex = 1;
-                this.onHandleClose();
-                this.selectHouseReplace();
-                this.exeAjaxSelectHouse();
+                this.onHandleAjaxRequest();
                 break;
         }
+    },
+    onHandleAjaxRequest() {
+        this.pageIndex = 1;
+        this.onHandleModalClose();
+        this.selectHouseReplace();
+        this.exeAjaxSelectHouse();
     },
     onHandleRangeChange() {
     },
@@ -119,10 +131,67 @@ export const actions = {
     },
     getParams() {
         const {pageIndex, pageSize, type} = this;
-        return {
+        let params = {
             pageIndex,
             pageSize,
             type
         }
+        const leaseWay = this.btnItems1.value;
+        if (leaseWay) {
+            params = {
+                ...params,
+                leaseWay
+            };
+        }
+        const apart = this.btnItems2.value;
+        if (apart) {
+            params = {
+                ...params,
+                apart
+            };
+        }
+        const renovation = this.btnItems3.value;
+        if (renovation) {
+            params = {
+                ...params,
+                renovation
+            };
+        }
+        const direction = this.btnItems4.value;
+        if (direction) {
+            params = {
+                ...params,
+                direction
+            };
+        }
+        const floors = this.btnItems5.value;
+        if (floors) {
+            params = {
+                ...params,
+                floors
+            };
+        }
+        const priceScopes = this.btnItems6.value;
+        if (priceScopes) {
+            params = {
+                ...params,
+                priceScopes
+            };
+        }
+        const areaScopes = this.btnItems7.value;
+        if (areaScopes) {
+            params = {
+                ...params,
+                areaScopes
+            };
+        }
+        const sort = this.btnItems8.value;
+        if (sort) {
+            params = {
+                ...params,
+                ...sort
+            };
+        }
+        return params;
     }
 };
