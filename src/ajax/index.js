@@ -26,12 +26,12 @@ export const request = (api, method, params) => {
         setTimeout(() => {
           const {data} = res;
           resolve(data);
-        }, 1000);
+        }, 500);
       },
       fail: (err) => {
         setTimeout(() => {
           reject(err);
-        }, 1000);
+        }, 500);
       }
     });
   });

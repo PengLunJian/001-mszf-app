@@ -95,29 +95,9 @@ export const ajaxSelectCitys = ({commit}) => {
 };
 /**
  *
+ * @param commit
+ * @param data
  */
-export const ajaxRequestSelectCitys = createAction(
-    'selectCitys', () => {
-        return new Promise((resolve, reject) => {
-            commit(actionTypes.SELECT_CITYS_REQUEST);
-            const qqmapsdk = new QQMapWX({
-                key: $config.DEFAULT_MAPKEY
-            });
-            qqmapsdk.getCityList({
-                success: (res) => {
-                    res = res || {};
-                    const {status} = res;
-                    if (!status) {
-                        commit(actionTypes.SELECT_CITYS_SUCCESS, res);
-                    } else {
-                        commit(actionTypes.SELECT_CITYS_FAILURE);
-                    }
-                    resolve(res);
-                },
-                fail: (err) => {
-                    commit(actionTypes.SELECT_CITYS_FAILURE);
-                    reject(err);
-                }
-            });
-        });
-    });
+export const selectCitysReplace = ({commit}, data) => {
+    commit(actionTypes.SELECT_CITYS_REPLACE, data);
+};

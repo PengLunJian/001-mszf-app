@@ -7,7 +7,7 @@
                     <view class="top-bar-row row">
                         <view class="top-bar-col col-3 ellipsis" @click="onHandleAddress">
                             <view class="top-bar-icon iconfont icon-location"></view>
-                            <view class="top-bar-text">宣城市</view>
+                            <view class="top-bar-text">{{isCity.fullname}}</view>
                         </view>
                         <view class="top-bar-col col-6">
                             <view class="btn btn-search" @click="onHandleSearch">
@@ -72,7 +72,8 @@
                 isLoading: state => state.INDEX.isLoading,
                 isSuccess: state => state.INDEX.isSuccess,
                 isFailure: state => state.INDEX.isFailure,
-                isData: state => state.INDEX.isData
+                isData: state => state.INDEX.isData,
+                isCity: state => state.CITYS.isCity
             })
         },
         methods: {
@@ -90,8 +91,6 @@
                 this.ajaxSelectIndex(params)
                     .then((res) => {
                         res = res || {};
-                        const {data, success} = res;
-                        console.log(data);
                         console.log(res);
                     })
                     .catch((err) => {

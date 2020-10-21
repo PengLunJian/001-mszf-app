@@ -95,7 +95,7 @@
                 position: relative;
                 .context {
                     height: 100%;
-                    padding-top: calc(@statusBarHeight + unit(90, rpx));
+                    padding-top: @top1;
                     .scroll-view {
                         height: 100%;
                         .scroll-content {

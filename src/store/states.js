@@ -28,3 +28,14 @@ export const HOUSE = {
         totalCount: 0
     }
 }
+
+export const CITYS = {
+    isLoading: false,
+    isSuccess: false,
+    isFailure: false,
+    isData: [],
+    isCity: {
+        id: '341800',
+        fullname: '宣城市'
+    }
+}

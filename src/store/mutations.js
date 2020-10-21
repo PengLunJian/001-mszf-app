@@ -67,7 +67,11 @@ export const SELECT_HOUSE_FAILURE = (state) => {
     state.HOUSE.isSuccess = false;
     state.HOUSE.isFailure = true;
 };
-
+/**
+ *
+ * @param state
+ * @constructor
+ */
 export const SELECT_HOUSE_REPLACE = (state) => {
     state.HOUSE.isLoading = false;
     state.HOUSE.isSuccess = false;
@@ -77,4 +81,46 @@ export const SELECT_HOUSE_REPLACE = (state) => {
         pageIndex: 1,
         totalCount: 0
     };
+};
+/**
+ *
+ * @param state
+ * @constructor
+ */
+export const SELECT_CITYS_REQUEST = (state) => {
+    state.CITYS.isLoading = true;
+    state.CITYS.isSuccess = false;
+    state.CITYS.isFailure = false;
+};
+/**
+ *
+ * @param state
+ * @param data
+ * @constructor
+ */
+export const SELECT_CITYS_SUCCESS = (state, data) => {
+    const newData = utils.cityFormat(data);
+    state.CITYS.isLoading = false;
+    state.CITYS.isSuccess = true;
+    state.CITYS.isFailure = false;
+    state.CITYS.isData = newData;
+};
+/**
+ *
+ * @param state
+ * @constructor
+ */
+export const SELECT_CITYS_FAILURE = (state) => {
+    state.CITYS.isLoading = false;
+    state.CITYS.isSuccess = false;
+    state.CITYS.isFailure = true;
+};
+/**
+ *
+ * @param state
+ * @param data
+ * @constructor
+ */
+export const SELECT_CITYS_REPLACE = (state, data) => {
+    state.CITYS.isCity = data;
 };
