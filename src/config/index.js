@@ -1,6 +1,6 @@
 import apis from '../apis';
 
-export const PAYKEY = '7882C15E64F740CC9550421130218525';
+export const DEFAULT_MAPKEY = 'MFZBZ-MGLWS-C55OR-6KRVW-K6ZFK-YUF3R';
 
 export const BANNER = [
     apis.fileUrl + '/image/f60c3425-62a0-4217-8e7a-1f3d90384e65.jpg',

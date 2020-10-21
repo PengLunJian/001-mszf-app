@@ -68,12 +68,19 @@ export const actions = {
             case 0:
                 break;
             case 1:
+                this.btnItems1.value = null;
                 this.btnItems1.activeIndex = -1;
+                this.btnItems2.value = null;
                 this.btnItems2.activeIndex = -1;
+                this.btnItems3.value = null;
                 this.btnItems3.activeIndex = -1;
+                this.btnItems4.value = null;
                 this.btnItems4.activeIndex = -1;
+                this.btnItems5.value = null;
                 this.btnItems5.activeIndex = -1;
+                this.btnItems6.value = null;
                 this.btnItems6.activeIndex = -1;
+                this.btnItems7.value = null;
                 this.btnItems7.activeIndex = -1;
                 break;
         }
