@@ -39,9 +39,17 @@ export const SETTING = {
 };
 
 export const HOUSE = {
-    rent: {
+    type1: {
+        name: '新房列表',
+        path: '/pages/house/type1/index'
+    },
+    type2: {
+        name: '售房列表',
+        path: '/pages/house/type2/index'
+    },
+    type3: {
         name: '租房列表',
-        path: '/pages/house/rent/index'
+        path: '/pages/house/type3/index'
     }
 };
 

@@ -124,3 +124,37 @@ export const SELECT_CITYS_FAILURE = (state) => {
 export const SELECT_CITYS_REPLACE = (state, data) => {
     state.CITYS.isCity = data;
 };
+/**
+ *
+ * @param state
+ * @constructor
+ */
+export const SELECT_AREAS_REQUEST = (state) => {
+    state.AREAS.isLoading = true;
+    state.AREAS.isSuccess = false;
+    state.AREAS.isFailure = false;
+};
+/**
+ *
+ * @param state
+ * @param data
+ * @constructor
+ */
+export const SELECT_AREAS_SUCCESS = (state, data) => {
+    const {result} = data;
+    const newData = result[0] || [];
+    state.AREAS.isLoading = false;
+    state.AREAS.isSuccess = true;
+    state.AREAS.isFailure = false;
+    state.AREAS.isData = newData;
+};
+/**
+ *
+ * @param state
+ * @constructor
+ */
+export const SELECT_AREAS_FAILURE = (state) => {
+    state.AREAS.isLoading = false;
+    state.AREAS.isSuccess = false;
+    state.AREAS.isFailure = true;
+};

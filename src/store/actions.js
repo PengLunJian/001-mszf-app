@@ -96,6 +96,37 @@ export const ajaxSelectCitys = ({commit}) => {
 /**
  *
  * @param commit
+ * @param params
+ * @returns {Promise<any>}
+ */
+export const ajaxSelectAreas = ({commit}, params) => {
+    return new Promise((resolve, reject) => {
+        commit(actionTypes.SELECT_AREAS_REQUEST);
+        const qqmapsdk = new QQMapWX({
+            key: $config.DEFAULT_MAPKEY
+        });
+        qqmapsdk.getDistrictByCityId({
+            id: params,
+            success: (res) => {
+                res = res || {};
+                const {status} = res;
+                if (!status) {
+                    commit(actionTypes.SELECT_AREAS_SUCCESS, res);
+                } else {
+                    commit(actionTypes.SELECT_AREAS_FAILURE);
+                }
+                resolve(res);
+            },
+            fail: (err) => {
+                commit(actionTypes.SELECT_AREAS_FAILURE);
+                reject(err);
+            }
+        });
+    });
+};
+/**
+ *
+ * @param commit
  * @param data
  */
 export const selectCitysReplace = ({commit}, data) => {

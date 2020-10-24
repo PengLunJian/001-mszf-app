@@ -57,6 +57,8 @@
         mixins: [mixins],
         data() {
             return {
+                pageSize: 5,
+                pageIndex: 1,
                 isScroll: true
             }
         },

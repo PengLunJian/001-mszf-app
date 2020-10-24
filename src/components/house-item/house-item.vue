@@ -9,18 +9,16 @@
             <view class="item-col col-8">
                 <view class="item-info">
                     <view class="item-title ellipsis">{{item.title}}</view>
-                    <view class="item-small ellipsis">2室1厅1卫 / 108m² / 朝南 / 卡地亚花园</view>
+                    <view class="item-small ellipsis">{{item.apart}}室 /
+                        建面{{item.minfloorArea||0}}-{{item.maxfloorArea||0}}m² / {{item.houseName}}
+                    </view>
                     <view class="item-tags">
-                        <view class="item-tag">南北通透</view>
-                        <view class="item-tag">南北通透</view>
-                        <view class="item-tag">南北通透</view>
-                        <view class="item-tag">南北通透</view>
+                        <view class="item-tag" v-for="(item,index) in getTags" :key="index">{{item}}</view>
                     </view>
                     <view class="item-price">
-                        <text class="item-total">115
-                            <text class="unit">万元</text>
+                        <text class="item-total">{{item.price}}
+                            <text class="unit">元/m²</text>
                         </text>
-                        <text class="item-unit">10648.1元/m²</text>
                     </view>
                 </view>
             </view>
@@ -34,7 +32,9 @@
             <view class="item-col col-8">
                 <view class="item-info">
                     <view class="item-title ellipsis">{{item.title}}</view>
-                    <view class="item-small ellipsis">{{item.apart}} / {{item.floorArea}}m² / {{item.leaseWay}} / {{item.houseName}}</view>
+                    <view class="item-small ellipsis">{{item.apart}} / {{item.floorArea}}m² / {{item.direction}} /
+                        {{item.houseName}}
+                    </view>
                     <view class="item-tags">
                         <view class="item-tag" v-for="(item,index) in getTags" :key="index">{{item}}</view>
                     </view>

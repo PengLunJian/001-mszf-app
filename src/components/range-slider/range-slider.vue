@@ -166,6 +166,8 @@
                 var that = this;
                 var values = that.values;
                 console.log('refresh', newVal, oldVal);
+                that.originalMinValue = 0;
+                that.originalMaxValue = 0;
                 if (that._isValuesValid(newVal) && that._isValuesValid(values)) {
                     if (values[0] != oldVal[0] || values[1] != oldVal[1]) that._refresh();
                 }

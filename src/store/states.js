@@ -39,3 +39,10 @@ export const CITYS = {
         fullname: '宣城市'
     }
 }
+
+export const AREAS = {
+    isLoading: false,
+    isSuccess: false,
+    isFailure: false,
+    isData: []
+}

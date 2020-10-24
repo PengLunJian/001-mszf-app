@@ -78,13 +78,25 @@
         },
         methods: {
             ...mapActions([
-                'ajaxSelectIndex'
+                'ajaxSelectIndex',
+                'ajaxSelectAreas'
             ]),
+            onHandleSearch() {
+                this.navigateTo($routes.SEARCH.path);
+            },
             onHandleAddress() {
                 this.navigateTo($routes.ADDRESS.path);
             },
-            onHandleSearch() {
-                this.navigateTo($routes.SEARCH.path);
+            exeAjaxSelectAreas() {
+                const {id} = this.isCity;
+                this.ajaxSelectAreas(id)
+                    .then((res) => {
+                        res = res || {};
+                        console.log(res);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
             },
             exeAjaxSelectIndex() {
                 const params = this.getParams();
@@ -101,11 +113,12 @@
                 this.exeAjaxSelectIndex();
             },
             getParams() {
-                const {pageSize, pageIndex} = this;
+                const {pageSize, pageIndex, isCity} = this;
+                const {fullname} = isCity;
                 return {
                     pageSize,
                     pageIndex,
-                    city: '宣城市'
+                    city: fullname
                 }
             }
         },
@@ -114,6 +127,7 @@
             if (!isSuccess) {
                 this.exeAjaxSelectIndex();
             }
+            this.exeAjaxSelectAreas();
         }
     }
 </script>

@@ -10,7 +10,25 @@
             }
         },
         {
-            "path": "pages/house/rent/index",
+            "path": "pages/house/type1/index",
+            "style": {
+                "app-plus": {
+                    "bounce": "none",
+                    "titleNView": false
+                }
+            }
+        },
+        {
+            "path": "pages/house/type2/index",
+            "style": {
+                "app-plus": {
+                    "bounce": "none",
+                    "titleNView": false
+                }
+            }
+        },
+        {
+            "path": "pages/house/type3/index",
             "style": {
                 "app-plus": {
                     "bounce": "none",

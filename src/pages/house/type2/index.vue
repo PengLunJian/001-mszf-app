@@ -30,25 +30,14 @@
                     <view class="modal-body">
                         <view class="modal-row row">
                             <view class="modal-col col-4">
-                                <view class="btn btn-city">宣城市</view>
+                                <view class="btn btn-city">{{isCitys.fullname}}</view>
                             </view>
                             <view class="modal-col col-8">
                                 <scroll-view class="scroll-view" :scroll-y="true">
-                                    <view class="btn btn-area active">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
-                                    <view class="btn btn-area">广德市</view>
+                                    <view class="btn btn-area" :class="{'active':btnItems0.activeIndex===index}"
+                                          v-for="(item,index) in btnItems0.items" :key="index"
+                                          @click="onHandleBtnItems(btnItems0,index)">{{item.fullname}}
+                                    </view>
                                 </scroll-view>
                             </view>
                         </view>
@@ -138,6 +127,21 @@
                                             </view>
                                         </view>
                                     </view>
+                                    <view class="modal-slider">
+                                        <view class="modal-row row">
+                                            <view class="modal-col col-6">
+                                                <view class="modal-label min-label">{{minPrice}}</view>
+                                            </view>
+                                            <view class="modal-col col-6">
+                                                <view class="modal-label max-label">{{maxPrice}}</view>
+                                            </view>
+                                            <view class="modal-col col-12">
+                                                <range-slider :width="690" :bar-height="8" :step="10"
+                                                              :values="priceValue" :min="0" :max="1000"
+                                                              @rangechange="onHandleChangePrice"/>
+                                            </view>
+                                        </view>
+                                    </view>
                                     <view class="modal-split"></view>
                                 </view>
                             </view>
@@ -155,40 +159,15 @@
                                     <view class="modal-slider">
                                         <view class="modal-row row">
                                             <view class="modal-col col-6">
-                                                <view class="modal-label min-label">价格</view>
+                                                <view class="modal-label min-label">{{minAreas}}</view>
                                             </view>
                                             <view class="modal-col col-6">
-                                                <view class="modal-label max-label">不限</view>
+                                                <view class="modal-label max-label">{{maxAreas}}</view>
                                             </view>
                                             <view class="modal-col col-12">
-                                                <range-slider :width="690" :bar-height="8" @rangeChange="onHandleRangeChange"/>
-                                            </view>
-                                        </view>
-                                    </view>
-                                    <view class="modal-split"></view>
-                                </view>
-                            </view>
-                            <view class="modal-row row">
-                                <view class="modal-col col-12">
-                                    <view class="modal-label">{{btnItems7.type}}</view>
-                                    <view class="modal-items row">
-                                        <view class="modal-item col-3" v-for="(item,index) in btnItems7.items"
-                                              :key="index">
-                                            <view class="btn-item" :class="{'active':btnItems7.activeIndex===index}"
-                                                  @click="onHandleBtnItems(btnItems7,index)">{{item.label}}
-                                            </view>
-                                        </view>
-                                    </view>
-                                    <view class="modal-slider">
-                                        <view class="modal-row row">
-                                            <view class="modal-col col-6">
-                                                <view class="modal-label min-label">面积</view>
-                                            </view>
-                                            <view class="modal-col col-6">
-                                                <view class="modal-label max-label">不限</view>
-                                            </view>
-                                            <view class="modal-col col-12">
-                                                <range-slider :width="690" :bar-height="8" @rangeChange="onHandleRangeChange"/>
+                                                <range-slider :width="690" :bar-height="8" :step="5"
+                                                              :values="areasValue" :min="0" :max="500"
+                                                              @rangechange="onHandleChangeAreas"/>
                                             </view>
                                         </view>
                                     </view>
@@ -215,9 +194,9 @@
                     <view class="modal-header"></view>
                     <view class="modal-body">
                         <view class="modal-row row">
-                            <view class="modal-col col-12" v-for="(item,index) in btnItems8.items" :key="index">
-                                <view class="btn btn-item" :class="{'active':btnItems8.activeIndex===index}"
-                                      @click="onHandleBtnItems(btnItems8,index)">{{item.label}}
+                            <view class="modal-col col-12" v-for="(item,index) in btnItems7.items" :key="index">
+                                <view class="btn btn-item" :class="{'active':btnItems7.activeIndex===index}"
+                                      @click="onHandleBtnItems(btnItems7,index)">{{item.label}}
                                 </view>
                             </view>
                         </view>
@@ -230,12 +209,12 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import mixins from '../../../mixins/index';
+    import mixins from '../../../mixins';
+    import TabBar from "../components/tab-bar/tab-bar";
     import NavBar from "../../../components/nav-bar/nav-bar";
+    import Loading from "../../../components/loading/loading";
     import HouseItem from "../../../components/house-item/house-item";
     import LoadingMore from "../../../components/loading-more/loading-more";
-    import TabBar from "../components/tab-bar/tab-bar";
-    import Loading from "../../../components/loading/loading";
     import RangeSlider from "../../../components/range-slider/range-slider";
     import Error from "../../../components/error/error";
     import Empty from "../../../components/empty/empty";
@@ -259,27 +238,20 @@
                 tabIndex: -1,
                 pageIndex: 1,
                 pageSize: 10,
-                type: 3,
-                btnItems1: {
-                    type: '方式',
+                type: 2,
+                minPrice: '价格',
+                maxPrice: '不限',
+                minAreas: '面积',
+                maxAreas: '不限',
+                areasValue: [0, 500],
+                priceValue: [0, 1000],
+                btnItems0: {
+                    type: '区域',
                     activeIndex: -1,
-                    items: [
-                        {
-                            label: '整租',
-                            value: '整租'
-                        },
-                        {
-                            label: '合租',
-                            value: '合租'
-                        },
-                        {
-                            label: '转租',
-                            value: '转租'
-                        }
-                    ],
+                    items: [],
                     value: null
                 },
-                btnItems2: {
+                btnItems1: {
                     type: '户型',
                     activeIndex: -1,
                     items: [
@@ -310,7 +282,7 @@
                     ],
                     value: null
                 },
-                btnItems3: {
+                btnItems2: {
                     type: '装修',
                     activeIndex: -1,
                     items: [
@@ -337,7 +309,7 @@
                     ],
                     value: null
                 },
-                btnItems4: {
+                btnItems3: {
                     type: '朝向',
                     activeIndex: -1,
                     items: [
@@ -364,7 +336,7 @@
                     ],
                     value: null
                 },
-                btnItems5: {
+                btnItems4: {
                     type: '楼层',
                     activeIndex: -1,
                     items: [
@@ -391,91 +363,91 @@
                     ],
                     value: null
                 },
-                btnItems6: {
+                btnItems5: {
                     type: '价格',
                     activeIndex: -1,
                     items: [
                         {
-                            label: '1000以下',
+                            label: '100万以下',
                             value: {
-                                minPrice: 0,
-                                maxPrice: 1000
+                                minTotalPrice: 0,
+                                maxTotalPrice: 100
                             }
                         },
                         {
-                            label: '1千-2千',
+                            label: '100-200万',
                             value: {
-                                minPrice: 1000,
-                                maxPrice: 2000
+                                minTotalPrice: 100,
+                                maxTotalPrice: 200
                             }
                         },
                         {
-                            label: '2千-3千',
+                            label: '200-300万',
                             value: {
-                                minPrice: 2000,
-                                maxPrice: 3000
+                                minTotalPrice: 200,
+                                maxTotalPrice: 300
                             }
                         },
                         {
-                            label: '3千-4千',
+                            label: '300-400万',
                             value: {
-                                minPrice: 3000,
-                                maxPrice: 4000
+                                minTotalPrice: 300,
+                                maxTotalPrice: 400
                             }
                         },
                         {
-                            label: '4千-5千',
+                            label: '400-500万',
                             value: {
-                                minPrice: 4000,
-                                maxPrice: 5000
+                                minTotalPrice: 400,
+                                maxTotalPrice: 500
                             }
                         },
                         {
-                            label: '5千-6千',
+                            label: '500-600万',
                             value: {
-                                minPrice: 5000,
-                                maxPrice: 6000
+                                minTotalPrice: 500,
+                                maxTotalPrice: 600
                             }
                         },
                         {
-                            label: '6千-7千',
+                            label: '600-700万',
                             value: {
-                                minPrice: 6000,
-                                maxPrice: 7000
+                                minTotalPrice: 600,
+                                maxTotalPrice: 700
                             }
                         },
                         {
-                            label: '7千-8千',
+                            label: '700-800万',
                             value: {
-                                minPrice: 7000,
-                                maxPrice: 8000
+                                minTotalPrice: 700,
+                                maxTotalPrice: 800
                             }
                         },
                         {
-                            label: '8千-9千',
+                            label: '800-900万',
                             value: {
-                                minPrice: 8000,
-                                maxPrice: 9000
+                                minTotalPrice: 800,
+                                maxTotalPrice: 900
                             }
                         },
                         {
-                            label: '9千-1万',
+                            label: '900-1000万',
                             value: {
-                                minPrice: 9000,
-                                maxPrice: 10000
+                                minTotalPrice: 900,
+                                maxTotalPrice: 1000
                             }
                         },
                         {
-                            label: '1万以上',
+                            label: '1000万以上',
                             value: {
-                                minPrice: 10000,
-                                maxPrice: 100000000
+                                minTotalPrice: 1000,
+                                maxTotalPrice: 100000000
                             }
                         }
                     ],
                     value: null
                 },
-                btnItems7: {
+                btnItems6: {
                     type: '面积',
                     activeIndex: -1,
                     items: [
@@ -552,7 +524,7 @@
                     ],
                     value: null
                 },
-                btnItems8: {
+                btnItems7: {
                     type: '排序',
                     activeIndex: -1,
                     items: [
@@ -603,6 +575,7 @@
         computed: $controller.states,
         methods: $controller.actions,
         onLoad() {
+            this.btnItems0.items = this.isAreas;
             this.selectHouseReplace();
             this.exeAjaxSelectHouse();
         }
@@ -758,7 +731,7 @@
                                         .modal-col {
                                             .modal-label {
                                                 padding: unit(15, rpx) 0;
-                                                &.max-label{
+                                                &.max-label {
                                                     text-align: right;
                                                 }
                                             }
